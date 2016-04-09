@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Fragments Notepad</string>
+    <string name="action_settings">DB to console</string>
+</resources>
