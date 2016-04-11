@@ -10,6 +10,8 @@
         android:id="@id/android:list"
         android:background="#f2d785"
         android:choiceMode="singleChoice"
-        android:verticalScrollbarPosition="left"/>
+        android:verticalScrollbarPosition="left"
+        />
+
 
 </LinearLayout>

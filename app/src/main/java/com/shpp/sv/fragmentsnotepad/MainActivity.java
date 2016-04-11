@@ -3,12 +3,9 @@ package com.shpp.sv.fragmentsnotepad;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements onEditRequestListener{
     public final static String NOTE_ID = "noteid";
@@ -66,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements onEditRequestList
     private void editNote(int id){
         EditNoteFragment editFragment = (EditNoteFragment)getFragmentManager()
                 .findFragmentById(R.id.frgEditeNote);
-
         if (editFragment != null && editFragment.isVisible()) {
             editFragment.editNote(id);
         } else {

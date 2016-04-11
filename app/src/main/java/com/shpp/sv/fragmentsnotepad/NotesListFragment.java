@@ -1,16 +1,12 @@
 package com.shpp.sv.fragmentsnotepad;
 
-import android.graphics.Color;
 import android.os.Bundle;
-//import android.support.v4.app.ListFragment;
 import android.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * Created by SV on 07.04.2016.
@@ -46,7 +42,9 @@ public class NotesListFragment extends ListFragment {
 
         ListView listView = getListView();
         if (activateLastItem){
-            listView.setItemChecked(listView.getCount() - 1, true);
+            int lastItemID = listView.getCount() - 1;
+            listView.setItemChecked(lastItemID, true);
+            listView.setSelection(lastItemID);
         } else {
             listView.setItemChecked(-1, true);
         }
