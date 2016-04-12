@@ -14,7 +14,7 @@ import android.widget.ListView;
  */
 public class NotesListFragment extends ListFragment {
     private ArrayAdapter<String> adapter;
-
+    private static final int EMPTY_ITEM_ID = -1;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -40,15 +40,13 @@ public class NotesListFragment extends ListFragment {
 
     public void updateList(boolean activateLastItem) {
         adapter.notifyDataSetChanged();
-        //Log.d("svcom", "update list item chek");
         ListView listView = getListView();
         if (activateLastItem){
             int lastItemID = listView.getCount() - 1;
             listView.setItemChecked(lastItemID, true);
             listView.setSelection(lastItemID);
         } else {
-            listView.setItemChecked(-1, true);
-            //Log.d("svcom", "update list item chek -1");
+            listView.setItemChecked(EMPTY_ITEM_ID, true);
         }
     }
 }

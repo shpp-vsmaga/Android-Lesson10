@@ -2,6 +2,7 @@ package com.shpp.sv.fragmentsnotepad;
 
 import android.app.Fragment;
 import android.os.Bundle;
+//import android.R;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,12 +29,12 @@ public class EditNoteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_note, container, false);
-        edtNoteEditor = (EditText)view.findViewById(R.id.edtEditeNote);
+        edtNoteEditor = (EditText) view.findViewById(R.id.edtEditeNote);
         setHasOptionsMenu(true);
         return view;
     }
 
-    public  void editNote(int id){
+    public void editNote(int id) {
         currentId = id;
         NotesDbHelper dbHelper = NotesDbHelper.getInstance(getActivity());
         edtNoteEditor.setText(dbHelper.getNote(id));
@@ -44,11 +45,11 @@ public class EditNoteFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        saveButton = menu.add(0,SAVE_BUTTON_ID,1, "save");
+        saveButton = menu.add(0, SAVE_BUTTON_ID, 1, "Save");
         saveButton.setIcon(android.R.drawable.ic_menu_save);
         saveButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-        deleteButton = menu.add(0, DELETE_BUTTON_ID, 0, "delete");
+        deleteButton = menu.add(0, DELETE_BUTTON_ID, 0, "Delete");
         deleteButton.setIcon(android.R.drawable.ic_menu_delete);
         deleteButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
@@ -73,7 +74,7 @@ public class EditNoteFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case SAVE_BUTTON_ID:
                 saveText();
                 return true;
@@ -85,7 +86,7 @@ public class EditNoteFragment extends Fragment {
         }
     }
 
-    public void setControlsActive(boolean active){
+    public void setControlsActive(boolean active) {
         if (!active) {
             edtNoteEditor.setText("");
         }
@@ -99,40 +100,34 @@ public class EditNoteFragment extends Fragment {
         NotesDbHelper dbHelper = NotesDbHelper.getInstance(getActivity());
         dbHelper.updateNote(currentId, edtNoteEditor.getText().toString());
 
-        /*Disable buttons*/
-        setControlsActive(false);
-
-        /*Say activity all is done*/
-        ((onEditRequestListener)getActivity()).editFinish();
+        editFinish();
     }
 
-    private void deleteText(){
+    private void deleteText() {
         /*Delete from DB*/
         NotesDbHelper dbHelper = NotesDbHelper.getInstance(getActivity());
         dbHelper.deleteNote(currentId);
 
+        editFinish();
+    }
+
+    private void editFinish() {
         /*Disable buttons*/
         setControlsActive(false);
 
         /*Say activity all is done*/
-        ((onEditRequestListener)getActivity()).editFinish();
+        ((onEditRequestListener) getActivity()).editFinish();
     }
 
-
-
-    private void setButtonsVisible(boolean visible){
+    private void setButtonsVisible(boolean visible) {
         edtNoteEditor.setEnabled(visible);
-        //if (deleteButton != null && saveButton != null) {
-            if (visible) {
-                deleteButton.setVisible(true);
-                saveButton.setVisible(true);
-            } else {
-                deleteButton.setVisible(false);
-                saveButton.setVisible(false);
-            }
-        //} else {
-            //Log.d("svcom", "BUTTONS NULL");
-        //}
+        if (visible) {
+            deleteButton.setVisible(true);
+            saveButton.setVisible(true);
+        } else {
+            deleteButton.setVisible(false);
+            saveButton.setVisible(false);
+        }
     }
 
     @Override
@@ -140,6 +135,4 @@ public class EditNoteFragment extends Fragment {
         super.onPause();
         setControlsActive(false);
     }
-
-
 }
