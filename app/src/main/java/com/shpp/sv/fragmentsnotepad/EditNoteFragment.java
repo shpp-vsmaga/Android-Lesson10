@@ -85,7 +85,7 @@ public class EditNoteFragment extends Fragment {
         }
     }
 
-    private void setControlsActive(boolean active){
+    public void setControlsActive(boolean active){
         if (!active) {
             edtNoteEditor.setText("");
         }
@@ -118,15 +118,28 @@ public class EditNoteFragment extends Fragment {
         ((onEditRequestListener)getActivity()).editFinish();
     }
 
+
+
     private void setButtonsVisible(boolean visible){
         edtNoteEditor.setEnabled(visible);
-
-        if (visible){
-            deleteButton.setVisible(true);
-            saveButton.setVisible(true);
-        } else {
-            deleteButton.setVisible(false);
-            saveButton.setVisible(false);
-        }
+        //if (deleteButton != null && saveButton != null) {
+            if (visible) {
+                deleteButton.setVisible(true);
+                saveButton.setVisible(true);
+            } else {
+                deleteButton.setVisible(false);
+                saveButton.setVisible(false);
+            }
+        //} else {
+            //Log.d("svcom", "BUTTONS NULL");
+        //}
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        setControlsActive(false);
+    }
+
+
 }

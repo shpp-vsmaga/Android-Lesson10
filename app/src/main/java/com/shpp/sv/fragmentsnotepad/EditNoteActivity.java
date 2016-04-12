@@ -1,12 +1,13 @@
 package com.shpp.sv.fragmentsnotepad;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import android.content.res.Configuration;
+//import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
+//import android.view.Menu;
 import android.view.MenuItem;
 
 public class EditNoteActivity extends AppCompatActivity implements onEditRequestListener {
@@ -16,6 +17,24 @@ public class EditNoteActivity extends AppCompatActivity implements onEditRequest
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
         displayHomeButton();
+        checkOrientation();
+    }
+
+    private void checkOrientation() {
+        int orientation = getResources().getConfiguration().orientation;
+        //Log.d("svcom", "configuration changed");
+        switch (orientation){
+            case Configuration.ORIENTATION_PORTRAIT:
+                //finish();
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                //Log.d("svcom", "LANDSCAPE");
+                finish();
+                break;
+            default:
+                //Log.d("svcom", "UNKNOWN ORIENTATION");
+                break;
+        }
     }
 
     private void displayHomeButton() {

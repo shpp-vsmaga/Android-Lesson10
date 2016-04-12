@@ -2,6 +2,7 @@ package com.shpp.sv.fragmentsnotepad;
 
 import android.os.Bundle;
 import android.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class NotesListFragment extends ListFragment {
 
     public void updateList(boolean activateLastItem) {
         adapter.notifyDataSetChanged();
-
+        //Log.d("svcom", "update list item chek");
         ListView listView = getListView();
         if (activateLastItem){
             int lastItemID = listView.getCount() - 1;
@@ -47,6 +48,7 @@ public class NotesListFragment extends ListFragment {
             listView.setSelection(lastItemID);
         } else {
             listView.setItemChecked(-1, true);
+            //Log.d("svcom", "update list item chek -1");
         }
     }
 }
