@@ -45,11 +45,11 @@ public class EditNoteFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        saveButton = menu.add(0, SAVE_BUTTON_ID, 1, "Save");
+        saveButton = menu.add(0, SAVE_BUTTON_ID, 1, getResources().getString(R.string.save));
         saveButton.setIcon(android.R.drawable.ic_menu_save);
         saveButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-        deleteButton = menu.add(0, DELETE_BUTTON_ID, 0, "Delete");
+        deleteButton = menu.add(0, DELETE_BUTTON_ID, 0, getResources().getString(R.string.delete));
         deleteButton.setIcon(android.R.drawable.ic_menu_delete);
         deleteButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 

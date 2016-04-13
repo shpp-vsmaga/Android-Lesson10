@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements onEditRequestList
     @Override
     protected void onResume() {
         super.onResume();
+        
         if (currentNoteID >= 0){
             editNote(currentNoteID);
         }
